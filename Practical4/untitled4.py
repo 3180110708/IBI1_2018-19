@@ -6,8 +6,8 @@ Created on Wed Mar 13 11:06:46 2019
 """
 
 count=13
-n=int(input())
-a=str(n)+' is 2**'
+n=1750
+a='1750 is 2**'
 while n!=0:
     if n-2**count<0:
         count=count-1
