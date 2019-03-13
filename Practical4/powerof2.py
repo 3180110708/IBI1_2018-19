@@ -5,41 +5,30 @@ Created on Wed Mar 13 10:10:56 2019
 @author: jxm72
 """
 
-#find the power of 2 that is cloest to n
-#the use the difference value of n and the power of 2 calculate again until n=0
+#make a list 
+#if the number is the cloest 
 
 
-
-
-
+b=13
+n=934
+count=[]
 while 1==1:
-    b=0
-    n=123
-    if (n-2**b)>0:
-        b=b+1
-        n=n
-    elif (n-2**b)<0:
+    
+    
+    if (n-2**b)<0:
         b=b-1
-        print(b)
-        n=n-2**(b-1)
-            
+    elif (n-2**b)>0:
+        count.append(b)
+        n=n-2**(b)
+        continue   
     elif (n-2**b)==0:
-        print(b)
+        count.append(b)
         break
-    
-    
    
-n=123
-b=0
-if (n-2**b)>0:
-    b=b+1
-elif (n-2**b)<0:
-    while (n-2**b)<0:
-        b=b-1
-        print(b)
-        n=n-2**b
-        if n=0:
-            break 
+print(count)
+print(len(count))
+for i in (0,len(count)-1):
+    print('2019','is','2**',str(count[i]),'+')
 
         
     
