@@ -14,8 +14,11 @@ d = c/11
 e = d/13
 if e >a:
     print('e is greater')
-else:
+elif e<a:
     print('a is greater')
+else:
+    print('a equals to e')
+    
     
     
     

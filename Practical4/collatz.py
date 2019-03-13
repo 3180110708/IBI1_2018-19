@@ -5,7 +5,7 @@ Created on Wed Mar 13 09:43:13 2019
 @author: jxm72
 """
 
-#judge whether n is even or odd
+#judge whether n is even or odd using n%2
 #if even, multiple 3 and plus 1; if odd, divide by 2
 #when n==1, stop
 n=int(input())

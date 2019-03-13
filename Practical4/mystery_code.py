@@ -1,5 +1,5 @@
 # What does this piece of code do?
-# Answer: to find a integer between 1 and 100 that can not be exactly divided by any integer between 2 to 10
+# Answer: to find a integer between 1 and 100 that can not be exactly divided by any integer between 2 to 10,that is a prime number
 
 # Import libraries
 # randint allows drawing a random number, 
@@ -19,7 +19,7 @@ while p==False:
     n = randint(1,100)
 #ceil means going up for an integer,so u range from 1 to 10
     u = ceil(n**(0.5))
-#i range from 2 to 10    
+#try every i range from 2 to 10    
     for i in range(2,u+1):
 #when n can be exactly divided by at least one integer from 2 to 10, the circulation will keep on
 #when n can't be exactly divided by any integer from 2 to 10, the circulation break
