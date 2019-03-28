@@ -9,98 +9,55 @@ import smtplib
 from smtplib import SMTPException
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import string
+from email.header import Header
+import getpass
 
-address=open(r"C:\Users\jxm72\Desktop\semester2\IBI1\6\6_Practical_data(1)\address_information1.csv",'r')
-#print(str(address))
-#c_address=re.split(',')
-#print(c_address)
 
-#with open(r"C:\Users\jxm72\Desktop\semester2\IBI1\6\6_Practical_data(1)\address_information1.csv", 'rb') as csvfile:
-#spamreader = csv.reader(r"C:\Users\jxm72\Desktop\semester2\IBI1\6\6_Practical_data(1)\address_information1.csv", delimiter=',')
-#print(spamreader)  
+address=open(r"address_information1.csv",'r')
 cr_address=[]
 name=[]
 subject=[]
 for line in address:
-    print(line)
     line=re.split(',',line)
-    if re.match(r'(\S+)@(\S+)\.(\S+)',line[1]):
+    if re.match(r'(\S+)@(\S+)+(\.\S+)',line[1]):#judge whether address is correct
         print(line[1],':','correct address')
+        #collect data of address, name and subject
         cr_address.append(line[1])
         name.append(line[0])
         subject.append(line[2])
     else:
         print(line[1],':','Wrong address!')
-print(cr_address)
-print(name)
-print(subject)
-for i in range(3):
-    print(name[i])
-    
-    
-    
-    
-    
-with open(r"C:\Users\jxm72\Desktop\semester2\IBI1\6\6_Practical_data(1)\body.txt", 'r') as myfile:
+address.close()        
+ 
+with open(r"body.txt", 'r') as myfile:
     data = myfile.read()
-    data1=data[::]
-print(data)    
-
+    data1=data[::]#replicate data to complete the iteration
+   
+username=input('please input your zju username:')
+password=getpass.getpass('please input the password:')
+yourname=input('please input your name:')
 for i in range(3):
    
     data=data1.replace('User',name[i])
-    print(data)
-    
-        
-#    msg['From'] = sender
-#    msg['To'] = receivers
-    #msg['Subject'] = email.header.Header(subject, 'utf-8').encode()
-    
-#    #msg.attach(MIMEText(body, 'plain'))
-    
+  
     try:
-        sender = '3180110708@zju.edu.cn'
-        receivers = cr_address[i]
+        sender = username+'@zju.edu.cn'
+        receivers =cr_address[i]#'Jixin.18@intl.zju.edu.cn'
         mailserver = smtplib.SMTP('smtp.zju.edu.cn',25)
-        mailserver.login('3180110708', 'a1193644683')
+        mailserver.login(username, password)
+        #define toname, fromname and subject
         msg = MIMEMultipart()
-        msg['From'] = sender
-        msg['To'] = receivers
-        msg['Subject'] = subject[i]
-        body = data
-        msg.attach(MIMEText(body, 'plain'))
-#        msg = MIMEMultipart()
-#        msg['Subject'] = subject[i]
-#        content = MIMEText(body, 'plain')
-#        msg.attach(data)
-#        filename = "body.txt"
-#        f = file(filename)
-#        attachment = MIMEText(f.read())
-#        attachment.add_header('Content-Disposition', 'attachment', filename=filename)           
-#        msg.attach(attachment)
-        #password=input('please input the password:')
-        
-        #message = str(body)
-        mailserver.ehlo()
-        mailserver.starttls()
-        mailserver.ehlo()
-
+        msg['To'] = Header(name[i],'utf-8')
+        msg['Subject'] = Header(subject[i], 'utf-8')
+        msg['From']=Header(yourname,'utf-8')
+        msg.attach(MIMEText(data, 'plain'))
+        #change the body to string
         text = msg.as_string()
-
-        mailserver.sendmail(sender, receivers,text)  
+        mailserver.sendmail(sender, receivers,text)
+        mailserver.quit()
         print("Successfully sent email")
     except SMTPException:
        print("Error: unable to send email")
-    
-#    y=re.search(r'(\S+)@(\S+)\.(\S+)',line[1])
-#    if y=='None':
-#        print('Wrong address!')
-#    else:
-#        print('correct address')
-#    print(y)
-    
+       
+       
 
-
- #for row in spamreader:
-        #print(', '.join(row))
