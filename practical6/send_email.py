@@ -13,7 +13,7 @@ from email.header import Header
 import getpass
 
 
-address=open(r"address_information1.csv",'r')
+address=open(r"address_information.csv",'r')
 cr_address=[]
 name=[]
 subject=[]
@@ -29,20 +29,19 @@ for line in address:
         print(line[1],':','Wrong address!')
 address.close()        
  
+
 with open(r"body.txt", 'r') as myfile:
     data = myfile.read()
-    data1=data[::]#replicate data to complete the iteration
-   
+    print(data)
+    data1=data[::]#replicate data to complete the iteration  
 username=input('please input your zju username:')
 password=getpass.getpass('please input the password:')
 yourname=input('please input your name:')
 for i in range(3):
-   
-    data=data1.replace('User',name[i])
-  
+    data=data1.replace('User',name[i])#modify the body
     try:
         sender = username+'@zju.edu.cn'
-        receivers =cr_address[i]#'Jixin.18@intl.zju.edu.cn'
+        receivers ='Jixin.18@intl.zju.edu.cn'#cr_address[i]
         mailserver = smtplib.SMTP('smtp.zju.edu.cn',25)
         mailserver.login(username, password)
         #define toname, fromname and subject
