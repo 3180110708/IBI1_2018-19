@@ -13,7 +13,7 @@ for j in range(10):
     infected=1
     susceptible=9999
     recovered=0
-    vaccination=[1000,2000,3000,4000,5000,6000,7000,8000,9000,10000]
+    vaccination=[1000,2000,3000,4000,5000,6000,7000,8000,9000,9999]
     track=np.array((infected,susceptible,recovered))
     for i in range(1000):      
         propotion=0.3*(infected/10000)
