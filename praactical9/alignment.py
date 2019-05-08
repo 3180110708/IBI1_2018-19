@@ -20,25 +20,22 @@ randoml=list(random)
 #match the keys with values
 def blosum(a,b): 
     if (a,b) in keys:
-        #print(1)
         index=keys.index((a,b))
         score=values[index]
-        #print(type(score))
     elif (b,a) in keys:
         index=keys.index((b,a))
-        score=values[index]
-        #print(score)    
+        score=values[index] 
     return score
 
 #add the scores and percentage
 def blosum2(a,b):
     scor=0
     per=0
-    for i in range(len(human)):
+    for i in range(len(a)):
         score=blosum(a[i],b[i])
         if a[i]==b[i]:
             per+=1
-        perc=(per/len(humanl))*100
+        perc=(per/len(a))*100
         scor+=score
     distance = 0		#set initial distance as zero
     for i in range(len(human)):	#compare each amino acid
@@ -56,54 +53,39 @@ print('the distance for human+mouse, human+random, random+mouse are',pair1[2],',
 
 #make a blast like sequence
 def blastlike(a,b):
-    if a==b:
-        print(a,'--',b)
-    elif (a,b) in keys:
-        if values[keys.index((a,b))]>=0:
-            print(a,'  ',b,'+')
+    line=[]
+    line1=[]        
+    for i in range(len(a)):
+        if a[i]==b[i]:
+            line.append(i)
+        elif (a[i],b[i]) in keys:
+            if values[keys.index((a[i],b[i]))]>=0:
+                line1.append(i)
+        elif (b[i],a[i]) in keys:
+            if values[keys.index((b[i],a[i]))]>=0:
+                line1.append(i)  
+    #return line,line1         
+    result=(line,line1)
+    
+    line2=['']*len(a)
+    for i in range(len(a)):        
+        if i in result[0]:
+            line2[i]=a[i]
+        elif i in result[1]:
+            line2[i]='+'
         else:
-            print(a,'  ',b)        
-    elif (b,a) in keys:
-        if values[keys.index((b,a))]>=0:
-            print(a,'  ',b,'+')
-        else:
-            print(a,'  ',b)        
-for i in range(len(human)):
-    blastlike(human[i],mouse[i])
+            line2[i]=' '    
+    print(''.join(a[0:80]),'...')
+    print(''.join(line2[0:80]))
+    print(''.join(b[0:80]),'...')       
+print('')
+blastlike(humanl,mousel)
+print('')
+blastlike(humanl,randoml)
+print('')
+blastlike(mousel,randoml)   
     
     
     
     
-    
-#scor=0
-#per=0
-#for i in range(len(humanl)):    
-#    score=blosum(humanl[i],mousel[i])    
-#    if humanl[i]==mousel[i]:
-#        per+=1    
-#    perc1=(per/len(humanl))*100
-#    scor=scor+score
-#pair1=scor
-#per=0
-#scor=0
-#for i in range(len(humanl)):    
-#    score=blosum(humanl[i],randoml[i]) 
-#    #print(score)
-#    #print(scor)
-#    if humanl[i]==randoml[i]:
-#        per+=1
-#    perc2=(per/len(humanl))*100
-#    
-#    scor=scor+score       
-#pair2=scor
-#per=0
-#scor=0
-#for i in range(len(mousel)):    
-#    score=blosum(randoml[i],mousel[i]) 
-#    #print(score)
-#    #print(scor)
-#    if randoml[i]==mousel[i]:
-#        per+=1
-#    perc3=(per/len(humanl))*100
-#    scor=scor+score
-#pair3=scor
+ 
