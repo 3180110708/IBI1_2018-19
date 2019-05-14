@@ -14,15 +14,11 @@ population[outbreak[0],outbreak[1]] = 1
 plt.figure( figsize =(6 ,4) , dpi=150) 
 plt.imshow( population , cmap='viridis' , interpolation='nearest')
 infectedplace=np.where(population==1)
-print(infectedplace)
-
-
-
+#print(infectedplace)
 xx=infectedplace[0]
 yy=infectedplace[1]
 for j in range(100):
-    for i in range(len(xx)):
-        
+    for i in range(len(xx)):        
         x=xx[i]
         y=yy[i]
         for xneighbour in range(x-1,x+2):
@@ -33,17 +29,16 @@ for j in range(100):
                             population[xneighbour,yneighbour]=np.random.choice(range(2),1,p=[0.7,0.3])
                             if population[xneighbour,yneighbour]==1:
                                 xneighbour=np.array([xneighbour])
-                                yneighbour=np.array(yneighbour)
-                                print(xneighbour)
+                                yneighbour=np.array(yneighbour)                                
                                 xx=np.append(xx,xneighbour)
                                 yy=np.append(yy,yneighbour)
                         if population[xneighbour,yneighbour]==1:
                             population[xneighbour,yneighbour]=np.random.choice(range(1,3),1,p=[0.95,0.05])
-             
- 
+                                         
     #print(infectedplace[1])
-    plt.figure( figsize =(6 ,4) , dpi=150) 
-    plt.imshow( population , cmap='viridis' , interpolation='nearest')
-        
+    if j in [0,10,50,100]:
+        plt.figure( figsize =(6 ,4) , dpi=150) 
+        plt.imshow( population , cmap='viridis' , interpolation='nearest')
+            
     
     
