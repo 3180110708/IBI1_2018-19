@@ -1,6 +1,7 @@
 import xml.dom.minidom
 import pandas as pd
 
+#open and parse the xml file to creat a DOM tree
 fileName='go_obo.xml'
 DOMTree = xml.dom.minidom.parse(fileName) 
 obo = DOMTree.documentElement
@@ -23,9 +24,10 @@ def Child(id, resultSet):
                 resultSet.add(geneid)
                 #iterate until there is no childnodes for this id
                 Child(geneid, resultSet)
-#get the terms that has 'autophagosome' in its definition
+
 for term in go:
     description=term.getElementsByTagName('defstr')[0].childNodes[0].data
+    #get the terms that has 'autophagosome' in its definition
     if 'autophagosome' in description:
         termlist.append(term)
 #collect the data       
@@ -39,7 +41,7 @@ for term in termlist:
     print(id, len(resultSet))
     numberofchild.append(len(resultSet))
 #make a dataframe
-data={'id':[idlist],'name':[namelist],'definition':[definition],'childnodes':[numberofchild]}  
+data={'id':idlist,'name':namelist,'definition':definition,'childnodes':numberofchild}  
 df=pd.DataFrame(data)    
 df.to_excel('autophagosome.xlsx',index=False)
 print(df)    

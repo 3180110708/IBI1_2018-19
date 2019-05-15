@@ -12,14 +12,20 @@ from email.mime.text import MIMEText
 from email.header import Header
 import getpass
 
-#The file 'address_information.csv' has be in the working directory
+#The file 'address_information.csv' has be in the working directory so we directly open it
 address=open(r"address_information.csv",'r')
 cr_address=[]
 name=[]
 subject=[]
+lines=[]
+#get information from csv file
 for line in address:
+    lines.append(line)
+del lines[0]#delete the line of column name
+
+for line in lines:
     line=re.split(',',line)
-    #judge whether address is correct
+    #check whether address is correct
     if re.match(r'(\S+)@(\S+)+(\.\S+)',line[1]):
         print(line[1],':','correct address')
         #collect the name and subject of correct address
@@ -40,11 +46,14 @@ username=input('please input your zju username:')
 password=getpass.getpass('please input the password:')
 yourname=input('please input your name:')
 for i in range(3):
-    data=data1.replace('User',name[i])#modify the body
+    #modify the body, change the User to the specific name
+    data=data1.replace('User',name[i])
+    myfile.close()
+    #send email
     try:
         #assign sender's address, receivers' address and the SMTP for zju
         sender = username+'@zju.edu.cn'
-        receivers =cr_address[i]
+        receivers = cr_address[i]
         mailserver = smtplib.SMTP('smtp.zju.edu.cn',25)
         #log in with sender's account
         mailserver.login(username, password)

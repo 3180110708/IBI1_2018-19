@@ -1,0 +1,1 @@
+In this practical, I finish the coding of SIR and SIR_vaccination. However, I fail to finish the spatial_SIR because lacking time. The data type is an annoying problem. Sometimes I have to change it to use some functions.  

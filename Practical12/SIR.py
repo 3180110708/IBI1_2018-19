@@ -8,23 +8,25 @@ Created on Wed May  8 09:06:54 2019
 import numpy as np
 import matplotlib.pyplot as plt
 N=10000
+beta=0.3
+gamma=0.05
 infected=1
 susceptible=9999
 recovered=0
 
-track=np.array((infected,susceptible,recovered))
+track=np.array((susceptible,infected,recovered))
 
 for i in range(1000):      
-    propotion=0.3*(infected/10000)
+    propotion=beta*(infected/10000)
     getinfected=np.random.choice(range(2),susceptible,p=[1-propotion,propotion])
-    getrecovered=np.random.choice(range(2),infected,p=[0.95,0.05])
+    getrecovered=np.random.choice(range(2),infected,p=[1-gamma,gamma])
     getinfected=sum(getinfected)
     getrecovered=sum(getrecovered)
     infected=infected+getinfected-getrecovered
     susceptible=susceptible-getinfected
     recovered=recovered+getrecovered
     #print(infected)
-    track1=np.array((infected,susceptible,recovered))
+    track1=np.array((susceptible,infected,recovered))
     track=np.append(track,track1)
     #print(infected)
 
@@ -33,9 +35,9 @@ plt.ylabel('number of people')
 plt.xlabel('time')
 y_pos=np.arange(1000)
 plt.plot(x)
-plt.legend(['infected','susceptible','recovered'])
+plt.legend(['susceptible','infected','recovered'])
 plt.title('SIR model')
-    
-#plt.figure(figsize =(6 ,4) , dpi=150)
-#plt.savefig ("SIR.png" ,type="png")
+plt.savefig ("SIR.png" ,type="png")
+plt.show()  
+
 
