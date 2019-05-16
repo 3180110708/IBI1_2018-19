@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Apr 17 09:11:23 2019
-
-@author: jxm72
-"""
 
 human='MLSRAVCGTSRQLAPVLAYLGSRQKHSLPDLPYDYGALEPHINAQIMQLHHSKHHAAYVNNLNVTEEKYQEALAKGDVTAQIALQPALKFNGGGHINHSIFWTNLSPNGGGEPKGELLEAIKRDFGSFDKFKEKLTAASVGVQGSGWGWLGFNKERGHLQIAACPNQDPLQGTTGLIPLLGIDVWEHAYYLQYKNVRPDYLKAIWNVINWENVTERYMACKK'
 mouse='MLCRAACSTGRRLGPVAGAAGSRHKHSLPDLPYDYGALEPHINAQIMQLHHSKHHAAYVNNLNATEEKYHEALAKGDVTTQVALQPALKFNGGGHINHTIFWTNLSPKGGGEPKGELLEAIKRDFGSFEKFKEKLTAVSVGVQGSGWGWLGFNKEQGRLQIAACSNQDPLQGTTGLIPLLGIDVWEHAYYLQYKNVRPDYLKAIWNVINWENVTERYTACKK'
@@ -55,7 +49,7 @@ pair3=list(blosum2(mousel,randoml))
 print('the scores for human+mouse, human+random, random+mouse are',pair1[0],',',pair2[0],',',pair3[0],', respectively')
 print('the identity percentages for human+mouse, human+random, random+mouse are',pair1[1],'%',',',pair2[1],'%',',',pair3[1],'%',', respectively')
 print('the distance for human+mouse, human+random, random+mouse are',pair1[2],',',pair2[2],',',pair3[2],', respectively')
-print('the normalised BLOSUM score is:',pair1[0]/l,',',pair2[0]/l,',',pair3[0]/l,)
+print('the normalised BLOSUM score for human+mouse, human+random, random+mouse are:',pair1[0]/l,',',pair2[0]/l,',',pair3[0]/l,', respectively \n')
 
 #below is the 'bonus' assignment:)
 #make a blast like sequence
@@ -84,12 +78,12 @@ def blastlike(a,b):
             line2[i]=' '    
     print(''.join(a[0:80]),'...')
     print(''.join(line2[0:80]))
-    print(''.join(b[0:80]),'...')       
-print('')
+    print(''.join(b[0:80]),'...','\n')       
+print('human & mouse:')
 blastlike(humanl,mousel)
-print('')
+print('human & random:')
 blastlike(humanl,randoml)
-print('')
+print('mouse & random:')
 blastlike(mousel,randoml)   
     
     

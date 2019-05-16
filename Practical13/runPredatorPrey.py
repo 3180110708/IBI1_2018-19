@@ -75,7 +75,7 @@ def plotcsv():
        # print(line)    
         lines=line.split(',')    
         datalist.append(lines)
-        
+    #remove the first line    
     del datalist[0]
         
     data=np.array(datalist)    
@@ -121,7 +121,7 @@ def editxml():
     cpsFile.close()
     
 
-
+#set the parameters to some given numbers
 k_predator_dies=0.4
 k_predator_breeds=0.02
 k_prey_breeds=0.1
@@ -131,17 +131,17 @@ plotcsv()
 
 
 
-#simulate multiple times and visulise the result
+#simulate multiple times and visulise the results
 for i in range(10):
     k_predator_dies=np.random.sample()
     k_predator_breeds=np.random.sample()
     k_prey_breeds=np.random.sample()
     k_prey_dies=np.random.sample()
     editxml()    
-    list=plotcsv()
+    listt=plotcsv()
     #print the max number of predator and prey during the simulation
-    print('the max number of predator is:',np.amax(list[0]))
-    print('the max number of predator is:',np.amax(list[1]))
+    print('the max number of predator is:',np.amax(listt[0]))
+    print('the max number of predator is:',np.amax(listt[1]))
     
 
 

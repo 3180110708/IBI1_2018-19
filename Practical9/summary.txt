@@ -2,9 +2,14 @@ summary of findings:
 BLOSUM score for mouse human comparison: 1091
 BLOSUM score for mouse random comparison: -250
 BLOSUM score for random human comparison: -250
+The larger the number is, the more similar the two sequence are.
+
 % identity for mouse human comparison: 89.63963963963964 % 
 % identity for mouse human comparison: 5.405405405405405 %
 % identity for mouse human comparison: 5.8558558558558556 %
+Identity percentage shows the similarity between two sequence.
+
 normalised BLOSUM score for mouse human comparison: 4.914414414414415
 normalised BLOSUM score for mouse human comparison: -1.1261261261261262
 normalised BLOSUM score for mouse human comparison: -1.1261261261261262
+Divide the BLOSUM score by the length of the sequence so that the score is normalised. Normalised score could be used to compare the sequence similarity of multiple groups of sequences of different lengths. 

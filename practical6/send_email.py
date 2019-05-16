@@ -42,7 +42,7 @@ with open(r"body.txt", 'r') as myfile:
     #replicate data to complete the iteration
     data1=data[::]
     
-username=input('please input your zju username:')
+loginname=input('please input your zju loginname:')
 password=getpass.getpass('please input the password:')
 yourname=input('please input your name:')
 for i in range(3):
@@ -52,11 +52,11 @@ for i in range(3):
     #send email
     try:
         #assign sender's address, receivers' address and the SMTP for zju
-        sender = username+'@zju.edu.cn'
+        sender = loginname+'@zju.edu.cn'
         receivers = cr_address[i]
         mailserver = smtplib.SMTP('smtp.zju.edu.cn',25)
         #log in with sender's account
-        mailserver.login(username, password)
+        mailserver.login(loginname, password)
         #define toname, fromname and subject
         msg = MIMEMultipart()
         msg['To'] = Header(name[i],'utf-8')
