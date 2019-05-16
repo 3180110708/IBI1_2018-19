@@ -7,8 +7,8 @@ Created on Wed May  8 09:06:54 2019
 
 import numpy as np
 import matplotlib.pyplot as plt
-
-for j in range(10):
+from matplotlib import cm
+for j in range(11):
     N=10000
     beta=0.3
     gamma=0.05
@@ -16,12 +16,12 @@ for j in range(10):
     susceptible=9999
     recovered=0
     #the different propotion of people get vaccinated
-    vaccination=[0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
+    vaccination=[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
     track=np.array((infected,susceptible,recovered))
     for i in range(1000):      
-        propotion=beta*(infected/10000)
+        propotion=beta*(infected/N)
 
-        getinfected=np.random.choice(range(2),susceptible-int(N*vaccination[j])+1,p=[1-propotion,propotion])
+        getinfected=np.random.choice(range(2),susceptible-int(susceptible*vaccination[j]),p=[1-propotion,propotion])
         getrecovered=np.random.choice(range(2),infected,p=[1-gamma,gamma])
         getinfected=sum(getinfected)
         getrecovered=sum(getrecovered)
@@ -38,9 +38,9 @@ for j in range(10):
     plt.xlabel('time')
     y_pos=np.arange(1000)
     plt.plot(x)
-    plt.legend(['10%','20%','30%','40%','50%','60%','70%','80%','90%','100%'])
+    plt.legend(['0','10%','20%','30%','40%','50%','60%','70%','80%','90%','100%'])
     plt.title('SIR model')
-
+    
 plt.savefig ("SIR_vaccination.png" ,type="png")
-plt.show()
+#plt.show()
 
