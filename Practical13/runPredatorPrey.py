@@ -82,8 +82,8 @@ def plotcsv():
     results=data.astype(np.float)
     
     #plot predator and prey against time
-    plt.plot(results[:,1])
-    plt.plot(results[:,2])
+    plt.plot(results[:,0],results[:,1])
+    plt.plot(results[:,0],results[:,2])
     plt.title('Time course')
     plt.ylabel('population size')
     plt.xlabel('time')
