@@ -141,7 +141,11 @@ for i in range(10):
     listt=plotcsv()
     #print the max number of predator and prey during the simulation
     print('the max number of predator is:',np.amax(listt[0]))
-    print('the max number of predator is:',np.amax(listt[1]))
+    print('the max number of prey is:',np.amax(listt[1]))
+    #next I plan to find the combination of parameters which has the highest max number of predator
+    #store the max number of predator in an array
+    #find the highest number in that array
+    #plot the corresbonding figure
     
 
 
